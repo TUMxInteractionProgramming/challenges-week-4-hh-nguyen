@@ -1,3 +1,6 @@
+/* #6 start the #external #action and say hello */
+console.log("App is alive");
+
 // current selected channel
 var currentChannel = sevenContinents;
 
@@ -5,11 +8,9 @@ var currentChannel = sevenContinents;
 var currentLocation = {
     longitude:8.897485,
     latitude: 50.181142,
-    what3words: "http://w3w.co/city.backpack.approve" 
+    what3words: "http://w3w.co/city.backpack.approve",
+    createdBy: "city.backpack.approve"
 };
-
-/* #6 start the #external #action and say hello */
-console.log("App is alive");
 
 /**
  * #6 #Switcher function for the #channels name in the right app bar
@@ -103,4 +104,48 @@ function showStar(starred){
     newClass += ' fa-lg';
     $('#channel-star').removeClass(oldClass);
     $('#channel-star').addClass(newClass);
+}
+
+/**
+ * Message Contructor
+ */
+function Message(text) {
+    this.createdBy = currentLocation.createdBy;
+    this.latitude = currentLocation.latitude;
+    this.longitude = currentLocation.longitude;
+    this.what3words = currentLocation.what3words;
+    var dateNow = new Date();
+    this.createdOn = dateNow;
+    this.expiresOn = dateNow.setMinutes(dateNow.getMinutes() + 15);
+    this.text = text;
+    this.own = true;
+}
+
+/**
+ *
+ */
+function sendMessage() {
+    var message = new Message("Hello Chatter");
+    console.log(message);
+    $('#messages').append(createMessageElement(message));
+    $('#messages div:first').scrollTop();
+}
+
+/**
+ *
+ */
+function createMessageElement(messageObject) {
+    var expiresIn = messageObject.expiresOn - Date.now();               // milliseconds
+    expiresIn = Math.round(((expiresIn % 86400000) % 3600000) / 60000);     // minutes
+    var createdDate = messageObject.createdOn.toString();
+    var lastColon = createdDate.lastIndexOf(':');
+    createdDate = createdDate.substr(0, lastColon);
+    var message = 
+        '<div class="message">' +
+            '<h3><a href="' + messageObject.what3words + '" target="_blank"><strong>' + messageObject.createdBy + '</strong></a> ' +
+            createdDate + ' <em>' + expiresIn + ' min. left</em></h3>' +
+            '<p>' + messageObject.text + '</p>' +
+            '<button>+5 min.</button>' +
+        '</div>';
+    return message;
 }
