@@ -42,3 +42,37 @@ var octoberfest = {
     expiresln: Number = 100,    // minutes
     messageCount: Number = 999
 };
+
+/**
+ * list all channels
+ */
+function listChannels() {
+    var yummy = createChannelElement("Yummy");
+    $('ul').append(yummy);
+    
+    var sevenContinents = createChannelElement("SevenContinents");
+    $('ul').append(sevenContinents);
+
+    var killerApp = createChannelElement("KillerApp");
+    $('ul').append(killerApp);
+    
+    var firstPersonOnMars = createChannelElement("FirstPersonOnMars");
+    $('ul').append(firstPersonOnMars);
+    
+    var octoberfest = createChannelElement("Octoberfest");
+    $('ul').append(octoberfest);
+}
+
+/*
+ * create channel
+ */
+function createChannelElement(channelObject) {
+    return(
+        '<li onclick="switchChannel(' + channelObject + ')">' +
+            '#' + channelObject +
+            '<span class="channel-meta">' +
+                '<i class="fa fa-star-o"></i>' +
+                '<i class="fa fa-chevron-right"></i>' +
+            '</span>' +
+        '</li>' );
+}
