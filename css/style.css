@@ -212,7 +212,13 @@ li.selected {
     display: none;
 }
 
-
+#input-message {
+    border: 0;
+    font-size: larger;
+    font-style: normal;
+    margin: auto;
+    margin-left: inherit;
+}
 
 /* MESSAGES */
 

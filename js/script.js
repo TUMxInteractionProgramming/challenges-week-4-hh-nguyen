@@ -122,30 +122,32 @@ function Message(text) {
 }
 
 /**
- *
+ * Create new message and append it to message chat
  */
 function sendMessage() {
-    var message = new Message("Hello Chatter");
+    var message = new Message($('#input-message').val());
     console.log(message);
     $('#messages').append(createMessageElement(message));
     $('#messages div:first').scrollTop();
+    $('#input-message').attr('placeholder', 'Message...');
 }
 
 /**
- *
+ * Create neww message chat 
  */
 function createMessageElement(messageObject) {
     var expiresIn = messageObject.expiresOn - Date.now();               // milliseconds
-    expiresIn = Math.round(((expiresIn % 86400000) % 3600000) / 60000);     // minutes
+    expiresIn = Math.round(((expiresIn % 86400000) % 3600000) / 60000); // minutes
     var createdDate = messageObject.createdOn.toString();
     var lastColon = createdDate.lastIndexOf(':');
     createdDate = createdDate.substr(0, lastColon);
-    var message = 
+    var message =
         '<div class="message">' +
             '<h3><a href="' + messageObject.what3words + '" target="_blank"><strong>' + messageObject.createdBy + '</strong></a> ' +
             createdDate + ' <em>' + expiresIn + ' min. left</em></h3>' +
             '<p>' + messageObject.text + '</p>' +
             '<button>+5 min.</button>' +
         '</div>';
+    console.log(message);
     return message;
 }
