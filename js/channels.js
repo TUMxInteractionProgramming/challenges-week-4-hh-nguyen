@@ -47,29 +47,22 @@ var octoberfest = {
  * list all channels
  */
 function listChannels() {
-    var yummy = createChannelElement("Yummy");
-    $('ul').append(yummy);
-    
-    var sevenContinents = createChannelElement("SevenContinents");
-    $('ul').append(sevenContinents);
-
-    var killerApp = createChannelElement("KillerApp");
-    $('ul').append(killerApp);
-    
-    var firstPersonOnMars = createChannelElement("FirstPersonOnMars");
-    $('ul').append(firstPersonOnMars);
-    
-    var octoberfest = createChannelElement("Octoberfest");
-    $('ul').append(octoberfest);
+    $('ul').append(createChannelElement(yummy));
+    $('ul').append(createChannelElement(sevenContinents));
+    $('ul').append(createChannelElement(killerApp));
+    $('ul').append(createChannelElement(firstPersonOnMars));
+    $('ul').append(createChannelElement(octoberfest));
 }
 
 /*
  * create channel
  */
 function createChannelElement(channelObject) {
+    var objName =  channelObject.name.slice(1);     // elminate #
+    objName = objName.charAt(0).toLowerCase() + objName.slice(1);
     return(
-        '<li onclick="switchChannel(' + channelObject + ')">' +
-            '#' + channelObject +
+        '<li onclick="switchChannel(' + objName + ')">' +
+            channelObject.name +
             '<span class="channel-meta">' +
                 '<i class="fa fa-star-o"></i>' +
                 '<i class="fa fa-chevron-right"></i>' +
