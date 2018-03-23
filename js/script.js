@@ -125,11 +125,11 @@ function Message(text) {
  * Create new message and append it to message chat
  */
 function sendMessage() {
-    var message = new Message($('#input-message').val());
-    console.log(message);
+    var message = new Message($('#input-message').val());   // get text input
+    // console.log(message);
     $('#messages').append(createMessageElement(message));
     $('#messages div:first').scrollTop();
-    $('#input-message').attr('placeholder', 'Message...');
+    $('#input-message').val("");                            // clear text input
 }
 
 /**
@@ -148,6 +148,6 @@ function createMessageElement(messageObject) {
             '<p>' + messageObject.text + '</p>' +
             '<button>+5 min.</button>' +
         '</div>';
-    console.log(message);
+    //console.log(message);
     return message;
 }

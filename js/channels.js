@@ -58,13 +58,21 @@ function listChannels() {
  * create channel
  */
 function createChannelElement(channelObject) {
+    // build the name of the object
     var objName =  channelObject.name.slice(1);     // elminate #
     objName = objName.charAt(0).toLowerCase() + objName.slice(1);
+    
+    // build star type
+    var star = "fa fa-star";
+    if (!channelObject.starred) {
+        star += "-o";
+    }
+    
     return(
         '<li onclick="switchChannel(' + objName + ')">' +
             channelObject.name +
             '<span class="channel-meta">' +
-                '<i class="fa fa-star-o"></i>' +
+                '<i class="' + star + '"></i>' +
                 '<i class="fa fa-chevron-right"></i>' +
             '</span>' +
         '</li>' );
