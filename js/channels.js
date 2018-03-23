@@ -68,11 +68,15 @@ function createChannelElement(channelObject) {
         star += "-o";
     }
     
+    var boxStyle = 'style="background-color: #3F51B5; color: white; font-size: 16px; padding: 2px; margin: 0 4px; border-radius: 2px; text-align: center;"';
+    
     return(
         '<li onclick="switchChannel(' + objName + ')">' +
             channelObject.name +
             '<span class="channel-meta">' +
                 '<i class="' + star + '"></i>' +
+                '<span ' + boxStyle + '>' + channelObject.expiresln + ' min' + '</span>' +
+                '<span ' + boxStyle + '>' + channelObject.messageCount + ' new' + '</span>' +
                 '<i class="fa fa-chevron-right"></i>' +
             '</span>' +
         '</li>' );
